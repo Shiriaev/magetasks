@@ -19,17 +19,10 @@
       "role": "Developer"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Shiriaev/magetasks"
-    }
-  ],
   "autoload": {
     "files": [ "registration.php" ],
     "psr-4": {
       "PShir\\MageTasks\\": ""
     }
-  },
-  "minimum-stability": "dev"
+  }
 }
