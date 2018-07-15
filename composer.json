@@ -32,6 +32,5 @@
       "PShir\\MageTasks\\": ""
     }
   },
-  "minimum-stability": "alpha",
-  "prefer-stable": true
+  "minimum-stability": "alpha"
 }
