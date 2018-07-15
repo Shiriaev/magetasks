@@ -23,7 +23,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://bitbucket.org/creare/example-repository"
+      "url": "https://github.com/Shiriaev/magetasks"
     }
   ],
   "autoload": {
