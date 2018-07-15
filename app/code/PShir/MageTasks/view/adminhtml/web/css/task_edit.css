@@ -1,0 +1,4 @@
+.page-columns .admin__fieldset div[data-index=task_attribute_button] { right: 25%; position: absolute; margin-top: -65px; }
+.page-columns .admin__fieldset div[data-index=task_attribute_button] > label { display: none; }
+.page-columns .admin__fieldset div[data-index=task_attribute_button] .admin__field-control { width: 100%; margin: 0; }
+.page-columns .admin__fieldset div[data-index=task_attribute_name] { display: none; }

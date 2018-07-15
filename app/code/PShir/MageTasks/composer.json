@@ -1,0 +1,35 @@
+{
+  "name": "PShir/MageTasks",
+  "description": "Create example tasks.",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "magento/product-community-edition": "2.2.0",
+    "magento/magento-composer-installer": "*",
+    "php": "7.0.2|7.0.4|~7.0.6|~7.1.0"
+  },
+  "authors": [
+    {
+      "name": "Pavel Shiriaev",
+      "email": "pavel@shiriaev.com",
+      "homepage": "https://shiriaev.com/",
+      "role": "Developer"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://bitbucket.org/creare/example-repository"
+    }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "PShir\\MageTasks\\": ""
+    }
+  }
+}

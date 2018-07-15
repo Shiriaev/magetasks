@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/pshir/magetasks/create/:name" method="GET">
+        <service class="PShir\MageTasks\Api\TaskInterface" method="create"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/pshir/magetasks/delete/:id" method="GET">
+        <service class="PShir\MageTasks\Api\TaskInterface" method="delete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/pshir/magetasks/gettask/:id" method="GET">
+        <service class="PShir\MageTasks\Api\TaskInterface" method="gettask"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/pshir/magetasks/getall/" method="GET">
+        <service class="PShir\MageTasks\Api\TaskInterface" method="getall"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

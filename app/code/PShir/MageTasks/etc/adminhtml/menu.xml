@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageTasks
+ *
+ * An example extension to create tasks.
+ *
+ * @category PShir
+ * @package PShir_MageTasks
+ * @author Pavel Shiriaev <pavel@shiriaev.com>
+ * @copyright Copyright © 2018 Pavel Shiriaev <pavel@shiriaev.com>
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="PShir_MageTasks::magetasks_index"
+             title="Tasks List"
+             module="PShir_MageTasks"
+             sortOrder="301"
+             parent="Magento_Backend::content_elements"
+             action="magetasks/task/index"
+             resource="PShir_MageTasks::edit"/>
+    </menu>
+</config>

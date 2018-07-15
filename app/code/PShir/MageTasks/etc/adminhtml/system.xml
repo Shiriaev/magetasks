@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageTasks
+ *
+ * An example extension to create tasks.
+ *
+ * @category PShir
+ * @package PShir_MageTasks
+ * @author Pavel Shiriaev <pavel@shiriaev.com>
+ * @copyright Copyright © 2018 Pavel Shiriaev <pavel@shiriaev.com>
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="PShir" translate="label" sortOrder="100">
+            <label>PShir Extensions</label>
+        </tab>
+        <section id="tasks" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>PShir-tasks</class>
+            <label>MageTasks</label>
+            <tab>PShir</tab>
+            <resource>PShir_MageTasks::settings</resource>
+            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Task Configuration</label>
+                <field id="url_key" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Tasks url key</label>
+                    <comment>Set the url key for tasks page. For example http://www.mystore.com/tasks/</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

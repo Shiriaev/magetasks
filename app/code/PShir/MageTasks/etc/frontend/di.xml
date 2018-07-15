@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageTasks
+ *
+ * An example extension to create tasks.
+ *
+ * @category PShir
+ * @package PShir_MageTasks
+ * @author Pavel Shiriaev <pavel@shiriaev.com>
+ * @copyright Copyright © 2018 Pavel Shiriaev <pavel@shiriaev.com>
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="tasks" xsi:type="array">
+                    <item name="class" xsi:type="string">PShir\MageTasks\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">40</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

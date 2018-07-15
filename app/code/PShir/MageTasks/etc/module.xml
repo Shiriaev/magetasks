@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageTasks
+ *
+ * An example extension to create tasks.
+ *
+ * @category PShir
+ * @package PShir_MageTasks
+ * @author Pavel Shiriaev <pavel@shiriaev.com>
+ * @copyright Copyright © 2018 Pavel Shiriaev <pavel@shiriaev.com>
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="PShir_MageTasks" setup_version="1.0.0">
+    </module>
+</config>

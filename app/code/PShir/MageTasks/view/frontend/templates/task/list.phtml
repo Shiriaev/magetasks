@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * MageTasks
+ *
+ * An example extension to create tasks.
+ *
+ * @category PShir
+ * @package PShir_MageTasks
+ * @author Pavel Shiriaev <pavel@shiriaev.com>
+ * @copyright Copyright © 2018 Pavel Shiriaev <pavel@shiriaev.com>
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+
+/**
+ * @var PShir\MageTasks\Block\Task\ListTasks
+ */
+
+$tasks = $this->getAllTasks();
+
+?>
+
+<h1 class="page-title">Magento Tasks</h1>
+
+<div class="content">
+    <div class="pshir-magetasks">
+        <?php
+        foreach ($tasks as $task){
+            ?>
+                <ul class="bare-list">
+                    <li class="task-item">
+                        <?= $task->getName() ?>
+                    </li>
+                </ul>
+            <?php
+        }
+        ?>
+    </div>
+</div>

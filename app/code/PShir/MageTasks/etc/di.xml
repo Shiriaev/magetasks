@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageTasks
+ *
+ * An example extension to create tasks.
+ *
+ * @category PShir
+ * @package PShir_MageTasks
+ * @author Pavel Shiriaev <pavel@shiriaev.com>
+ * @copyright Copyright © 2018 Pavel Shiriaev <pavel@shiriaev.com>
+ * @license https://opensource.org/licenses/OSL-3.0.php Open Software License 3.0
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="PShir\MageTasks\Model\ResourceModel\Task\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pshir_tasks</argument>
+            <argument name="resourceModel" xsi:type="string">PShir\MageTasks\Model\ResourceModel\Task</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magetasks_task_grid_data_source" xsi:type="string">PShir\MageTasks\Model\ResourceModel\Task\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="PShir\MageTasks\Api\TaskInterface" type="PShir\MageTasks\Model\TaskApi" />
+</config>
