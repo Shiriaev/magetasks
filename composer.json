@@ -19,7 +19,7 @@
       "role": "Developer"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
   "autoload": {
     "files": [ "registration.php" ],
     "psr-4": {
