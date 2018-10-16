@@ -8,9 +8,11 @@
  */
 
 namespace PShir\MageTasks\Block\Task;
-use Magento\Framework\View\Element\Template;
 
-class ListTasks extends \Magento\Framework\View\Element\Template
+use Magento\Framework\View\Element\Template;
+use PShir\MageTasks\Helper\Data as Helper;
+
+class ListTasks extends Template
 {
     /**
      * @var \PShir\MageTasks\Helper\Data
@@ -27,7 +29,7 @@ class ListTasks extends \Magento\Framework\View\Element\Template
 
     public function __construct(
         Template\Context $context,
-        \PShir\MageTasks\Helper\Data $helper, array $data = [])
+        Helper $helper, array $data = [])
     {
         parent::__construct($context, $data);
         $this->_helper = $helper;

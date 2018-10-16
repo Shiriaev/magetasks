@@ -15,30 +15,70 @@
 namespace PShir\MageTasks\Model\ResourceModel\Task;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Ui\DataProvider\AbstractDataProvider;
+use PShir\MageTasks\Model\Task as TaskModel;
+use Magento\Store\Model\StoreManagerInterface;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
+    /**
+     * @var \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+     */
     protected $collection;
+
+    /**
+     * @var DataPersistorInterface
+     */
     protected $dataPersistor;
+
+    /**
+     * @var
+     */
     protected $loadedData;
+
+    /**
+     * @var StoreManagerInterface
+     */
     protected $storeManager;
 
+    /**
+     * DataProvider constructor.
+     * @param $name
+     * @param $primaryFieldName
+     * @param $requestFieldName
+     * @param TaskModel $task
+     * @param DataPersistorInterface $dataPersistor
+     * @param StoreManagerInterface $storeManager
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
-        \PShir\MageTasks\Model\Task $task,
+        TaskModel $task,
         DataPersistorInterface $dataPersistor,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        StoreManagerInterface $storeManager,
         array $meta = [],
         array $data = []
     ) {
         $this->collection = $task->getCollection();
         $this->dataPersistor = $dataPersistor;
-        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->storeManager = $storeManager;
+
+        parent::__construct
+        (
+            $name,
+            $primaryFieldName,
+            $requestFieldName,
+            $meta,
+            $data
+        );
     }
 
+    /**
+     * @return array
+     */
     public function getData()
     {
         if (isset($this->loadedData)) {

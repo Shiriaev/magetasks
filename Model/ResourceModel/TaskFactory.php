@@ -14,13 +14,27 @@
 
 namespace PShir\MageTasks\Model\ResourceModel;
 
+use Magento\Framework\ObjectManagerInterface;
+
 class TaskFactory
 {
+    /**
+     * @var ObjectManagerInterface|null
+     */
     protected $objectManager = null;
+
+    /**
+     * @var null|string
+     */
     protected $instanceName = null;
 
+    /**
+     * TaskFactory constructor.
+     * @param ObjectManagerInterface $objectManager
+     * @param string $instanceName
+     */
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectManager,
+        ObjectManagerInterface $objectManager,
         $instanceName = '\\PShir\\MageTasks\\Model\\Task'
     ) {
         $this->objectManager = $objectManager;

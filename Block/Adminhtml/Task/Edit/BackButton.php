@@ -13,9 +13,11 @@
  */
 
 namespace PShir\MageTasks\Block\Adminhtml\Task\Edit;
+
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Exception\NoSuchEntityException;
+use PShir\MageTasks\Model\Task as TaskModel;
 
 class BackButton implements ButtonProviderInterface
 {
@@ -37,7 +39,7 @@ class BackButton implements ButtonProviderInterface
      */
     public function __construct(
         Context $context,
-        \PShir\MageTasks\Model\Task $taskModel
+        TaskModel $taskModel
     ) {
         $this->context = $context;
         $this->taskModel = $taskModel;

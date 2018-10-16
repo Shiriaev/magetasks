@@ -16,24 +16,38 @@ namespace PShir\MageTasks\Controller\Adminhtml\Task;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Framework\Exception\LocalizedException;
-use PShir\MageTasks\Controller\Adminhtml\Task\PostDataProcessor;
+use PShir\MageTasks\Model\Task as TaskModel;
 
-class Delete extends \Magento\Backend\App\Action
+class Delete extends Action
 {
     const ADMIN_RESOURCE = 'PShir_MageTasks::delete';
+
+    /**
+     * @var TaskModel
+     */
     protected $model;
 
+    /**
+     * Delete constructor.
+     * @param Action\Context $context
+     * @param PostDataProcessor $dataProcessor
+     * @param DataPersistorInterface $dataPersistor
+     * @param TaskModel $model
+     */
     public function __construct(
         Action\Context $context,
         PostDataProcessor $dataProcessor,
         DataPersistorInterface $dataPersistor,
-        \PShir\MageTasks\Model\Task $model
+        TaskModel $model
     ) {
         parent::__construct($context);
         $this->model = $model;
     }
 
+    /**
+     * @return $this|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * @throws \Exception
+     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();

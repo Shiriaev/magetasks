@@ -14,7 +14,9 @@
 
 namespace PShir\MageTasks\Model\ResourceModel;
 
-class Task extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+
+class Task extends AbstractDb
 {
 
     protected function _construct()

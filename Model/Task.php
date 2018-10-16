@@ -15,15 +15,33 @@
 namespace PShir\MageTasks\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
 
 class Task extends AbstractModel
 {
 
-    public function __construct( \Magento\Framework\Model\Context $context,
-                                 \Magento\Framework\Registry $registry,
-                                 array $data = [])
+    /**
+     * Task constructor.
+     * @param Context $context
+     * @param Registry $registry
+     * @param array $data
+     */
+    public function __construct
+    (
+        Context $context,
+        Registry $registry,
+        array $data = []
+    )
     {
-        parent::__construct($context, $registry, null, null, $data);
+        parent::__construct
+        (
+            $context,
+            $registry,
+            null,
+            null,
+            $data
+        );
     }
 
     protected function _construct()

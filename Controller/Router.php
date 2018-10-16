@@ -14,7 +14,17 @@
 
 namespace PShir\MageTasks\Controller;
 
-class Router implements \Magento\Framework\App\RouterInterface
+use Magento\Framework\App\RouterInterface;
+use Magento\Framework\App\ActionFactory;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\UrlInterface;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\App\ResponseInterface;
+use PShir\MageTasks\Helper\Data as Helper;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Url;
+
+class Router implements RouterInterface
 {
     /**
      * @var \Magento\Framework\App\ActionFactory
@@ -56,20 +66,13 @@ class Router implements \Magento\Framework\App\RouterInterface
      */
     protected $_helper;
 
-    /**
-     * @param \Magento\Framework\App\ActionFactory $actionFactory
-     * @param \Magento\Framework\Event\ManagerInterface $eventManager
-     * @param \Magento\Framework\UrlInterface $url
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\App\ResponseInterface $response
-     */
     public function __construct(
-    \Magento\Framework\App\ActionFactory $actionFactory,
-    \Magento\Framework\Event\ManagerInterface $eventManager,
-    \Magento\Framework\UrlInterface $url,
-    \Magento\Store\Model\StoreManagerInterface $storeManager,
-    \Magento\Framework\App\ResponseInterface $response,
-    \PShir\MageTasks\Helper\Data $helper
+    ActionFactory $actionFactory,
+    ManagerInterface $eventManager,
+    UrlInterface $url,
+    StoreManagerInterface $storeManager,
+    ResponseInterface $response,
+    Helper $helper
 ) {
     $this->actionFactory = $actionFactory;
     $this->_eventManager = $eventManager;
@@ -78,18 +81,13 @@ class Router implements \Magento\Framework\App\RouterInterface
     $this->_response = $response;
     $this->_helper = $helper;
 }
-    /**
-     * Validate and Match Task Page and modify request
-     *
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @return bool
-     */
-    public function match(\Magento\Framework\App\RequestInterface $request)
+
+    public function match(RequestInterface $request)
     {
         $identifier = trim($request->getPathInfo(), '/');
         if(strtolower($identifier) === $this->_helper->getUrlKey() || strtolower($identifier) === $this->_helper->getUrlKey()."/"){
             $request->setModuleName('magetasks')->setControllerName('task')->setActionName('index');
-            $request->setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS, $identifier . "/");
+            $request->setAlias(Url::REWRITE_REQUEST_PATH_ALIAS, $identifier . "/");
             return $this->actionFactory->create(
                 'Magento\Framework\App\Action\Forward',
                 ['request' => $request]

@@ -15,14 +15,24 @@
 namespace PShir\MageTasks\Model;
 
 use PShir\MageTasks\Api\TaskInterface;
+use Magento\Framework\Model\Context;
+use PShir\MageTasks\Helper\Data as Helper;
 
 class TaskApi implements TaskInterface
 {
+    /**
+     * @var Helper
+     */
     private $helper;
 
+    /**
+     * TaskApi constructor.
+     * @param Context $context
+     * @param Helper $helper
+     */
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \PShir\MageTasks\Helper\Data $helper
+        Context $context,
+        Helper $helper
     )
     {
         $this->helper = $helper;
@@ -35,7 +45,12 @@ class TaskApi implements TaskInterface
 
     public function delete($id)
     {
-        return $this->helper->deleteTask($id);
+        try {
+            return $this->helper->deleteTask($id);
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
     }
 
     public function getall()

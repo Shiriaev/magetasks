@@ -17,28 +17,74 @@ namespace PShir\MageTasks\Controller\Adminhtml\Task;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-use PShir\MageTasks\Controller\Adminhtml\Task\PostDataProcessor;
+use PShir\MageTasks\Helper\Data as Helper;
+use PShir\MageTasks\Model\ResourceModel\TaskFactory;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Filesystem\Io\File as IoFile;
 
-class Save extends \Magento\Backend\App\Action
+class Save extends Action
 {
+
     const ADMIN_RESOURCE = 'PShir_MageTasks::edit';
+
+    /**
+     * @var PostDataProcessor
+     */
     protected $dataProcessor;
+
+    /**
+     * @var DataPersistorInterface
+     */
     protected $dataPersistor;
+
+    /**
+     * @var Helper
+     */
     protected $helper;
+
+    /**
+     * @var TaskFactory
+     */
     protected $factory;
+
+    /**
+     * @var DirectoryList
+     */
     protected $directoryList;
+
+    /**
+     * @var IoFile
+     */
     protected $ioFile;
+
+    /**
+     * @var
+     */
     protected $_attributeHelper;
+
+    /**
+     * @var
+     */
     protected $uploadHelper;
 
+    /**
+     * Save constructor.
+     * @param Action\Context $context
+     * @param PostDataProcessor $dataProcessor
+     * @param DataPersistorInterface $dataPersistor
+     * @param Helper $data
+     * @param TaskFactory $factory
+     * @param DirectoryList $directory_list
+     * @param IoFile $ioFile
+     */
     public function __construct(
         Action\Context $context,
         PostDataProcessor $dataProcessor,
         DataPersistorInterface $dataPersistor,
-        \PShir\MageTasks\Helper\Data $data,
-        \PShir\MageTasks\Model\ResourceModel\TaskFactory $factory,
-        \Magento\Framework\App\Filesystem\DirectoryList $directory_list,
-        \Magento\Framework\Filesystem\Io\File $ioFile
+        Helper $data,
+        TaskFactory $factory,
+        DirectoryList $directory_list,
+        IoFile $ioFile
     )
     {
         parent::__construct($context);
@@ -50,6 +96,9 @@ class Save extends \Magento\Backend\App\Action
         $this->ioFile = $ioFile;
     }
 
+    /**
+     * @return $this|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();

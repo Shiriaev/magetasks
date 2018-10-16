@@ -14,30 +14,81 @@
 
 namespace PShir\MageTasks\Helper;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Catalog\Model\Layer\Resolver;
+use Magento\Eav\Model\Config;
+use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Store\Model\ScopeInterface;
+use PShir\MageTasks\Model\Task as TaskModel;
+use PShir\MageTasks\Model\ResourceModel\TaskFactory;
+
+class Data extends AbstractHelper
 {
-
-    protected $_storeManager;
-    protected $categoryRepository;
-    protected $_layerResolver;
-    protected $eavConfig;
-    protected $optionSettingsModel;
-    protected $productModel;
-    protected $taskModel;
-    protected $factory;
-    protected $tasksIds = array();
-
     const TASKS_CONFIGPATH = "tasks/settings/";
 
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $_storeManager;
+
+    /**
+     * @var CategoryRepositoryInterface
+     */
+    protected $categoryRepository;
+
+    /**
+     * @var Resolver
+     */
+    protected $_layerResolver;
+
+    /**
+     * @var Config
+     */
+    protected $eavConfig;
+
+    /**
+     * @var ProductModel
+     */
+    protected $productModel;
+
+    /**
+     * @var TaskModel
+     */
+    protected $taskModel;
+
+    /**
+     * @var TaskFactory
+     */
+    protected $factory;
+
+    /**
+     * @var array
+     */
+    protected $tasksIds = array();
+
+    /**
+     * Data constructor.
+     * @param Context $context
+     * @param StoreManagerInterface $storeManager
+     * @param CategoryRepositoryInterface $categoryRepository
+     * @param Resolver $layerResolver
+     * @param Config $eavConfig
+     * @param ProductModel $productModel
+     * @param TaskModel $taskModel
+     * @param TaskFactory $factory
+     */
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository,
-        \Magento\Catalog\Model\Layer\Resolver $layerResolver,
-        \Magento\Eav\Model\Config $eavConfig,
-        \Magento\Catalog\Model\Product $productModel,
-        \PShir\MageTasks\Model\Task $taskModel,
-        \PShir\MageTasks\Model\ResourceModel\TaskFactory $factory
+        Context $context,
+        StoreManagerInterface $storeManager,
+        CategoryRepositoryInterface $categoryRepository,
+        Resolver $layerResolver,
+        Config $eavConfig,
+        ProductModel $productModel,
+        TaskModel $taskModel,
+        TaskFactory $factory
     )
     {
         parent::__construct(
@@ -52,26 +103,41 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->factory = $factory;
     }
 
-    public function getTaskInfoById($filter,$filterValue,$attributeReturn){
+    /**
+     * @param $filter
+     * @param $filterValue
+     * @param $attributeReturn
+     * @return mixed|null
+     */
+    public function getTaskInfoById($filter, $filterValue, $attributeReturn){
         try{
-            return $this->taskModel->getCollection()->addFieldToFilter($filter,$filterValue)->addFieldToSelect($attributeReturn)->getFirstItem()->getData($attributeReturn);
+            return $this->taskModel->getCollection()
+                ->addFieldToFilter($filter,$filterValue)
+                ->addFieldToSelect($attributeReturn)
+                ->getFirstItem()
+                ->getData($attributeReturn);
         }
         catch (\Exception $ex){
-
+            return null;
         }
-        return null;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUrlKey(){
         $path = $this::TASKS_CONFIGPATH."url_key";
-        return $this->scopeConfig->getValue($path,\Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->getValue($path,ScopeInterface::SCOPE_STORE);
     }
 
+    /**
+     * @return mixed
+     */
     public function getStoreName()
     {
         return $this->scopeConfig->getValue(
             'general/store_information/name',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            ScopeInterface::SCOPE_STORE
         );
     }
 
@@ -84,6 +150,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $collection;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public function createTask($name){
 
         $data['name'] = $name;
@@ -105,6 +175,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return true;
     }
 
+    /**
+     * @param $id
+     * @return bool
+     * @throws \Exception
+     */
     public function deleteTask($id){
 
         $object = $this->taskModel->load($id);
@@ -116,6 +191,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
     }
 
+    /**
+     * @param $id
+     * @return \Exception|\Magento\Framework\DataObject
+     */
     public function getTask($id){
 
         try{
@@ -127,7 +206,5 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         catch (\Exception $ex){
             return $ex;
         }
-        return null;
-
     }
 }

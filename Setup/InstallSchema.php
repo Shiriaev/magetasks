@@ -13,6 +13,7 @@
  */
 
 namespace PShir\MageTasks\Setup;
+
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -34,6 +35,11 @@ class InstallSchema implements InstallSchemaInterface
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
+    /**
+     * @param SchemaSetupInterface $setup
+     * @param ModuleContextInterface $context
+     * @throws \Zend_Db_Exception
+     */
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $installer = $setup;

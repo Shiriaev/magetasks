@@ -14,21 +14,45 @@
 
 namespace PShir\MageTasks\Controller\Adminhtml\Task;
 
+use Magento\Framework\Stdlib\DateTime\Filter\Date as DateFilter;
+use Magento\Framework\Message\ManagerInterface;
+use Magento\Framework\View\Model\Layout\Update\ValidatorFactory;
+use PShir\MageTasks\Helper\Data as Helper;
+
 class PostDataProcessor
 {
+    /**
+     * @var DateFilter
+     */
     protected $dateFilter;
 
+    /**
+     * @var ValidatorFactory
+     */
     protected $validatorFactory;
 
+    /**
+     * @var ManagerInterface
+     */
     protected $messageManager;
 
+    /**
+     * @var Helper
+     */
     protected $helper;
 
+    /**
+     * PostDataProcessor constructor.
+     * @param DateFilter $dateFilter
+     * @param ManagerInterface $messageManager
+     * @param ValidatorFactory $validatorFactory
+     * @param Helper $helper
+     */
     public function __construct(
-        \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter,
-        \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Magento\Framework\View\Model\Layout\Update\ValidatorFactory $validatorFactory,
-        \PShir\MageTasks\Helper\Data $helper
+        DateFilter $dateFilter,
+        ManagerInterface $messageManager,
+        ValidatorFactory $validatorFactory,
+        Helper $helper
     ) {
         $this->dateFilter = $dateFilter;
         $this->messageManager = $messageManager;
@@ -36,6 +60,10 @@ class PostDataProcessor
         $this->helper = $helper;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function filter($data)
     {
         $filterRules = [];
@@ -49,6 +77,10 @@ class PostDataProcessor
         return (new \Zend_Filter_Input($filterRules, [], $data))->getUnescaped();
     }
 
+    /**
+     * @param $model
+     * @return bool
+     */
     public function validate($model)
     {
         $errorNo = true;

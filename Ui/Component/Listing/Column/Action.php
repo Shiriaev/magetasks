@@ -14,8 +14,13 @@
 
 namespace PShir\MageTasks\Ui\Component\Listing\Column;
 
+use Magento\Ui\Component\Listing\Columns\Column;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
 
-class Action extends \Magento\Ui\Component\Listing\Columns\Column
+
+class Action extends Column
 {
     const URL_PATH_EDIT = 'magetasks/task/edit';
 
@@ -36,9 +41,9 @@ class Action extends \Magento\Ui\Component\Listing\Columns\Column
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
-        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
+        UrlInterface $urlBuilder,
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
         array $components = [],
         array $data = []
     )
